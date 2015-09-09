@@ -3,35 +3,36 @@ FizzBuzz App with Input and Functions
 Chris Slaight, 2015
 */
 
-//On document load
+//On document load, perform the following
 $(document).ready(function() {
 
+	//Call the following block of code on submit of form
 	$('#submitValue').submit(function(e){
-		e.preventDefault();
-		var value = $('#userInput').val();
-		doFizzBuzz(value);
-		$('#userInput').val("");
-		$('#userInput').focus();
+		e.preventDefault(); //preventDefault to prevent page refresh
+		var value = $('#userInput').val(); //Grab user entered value
+		doFizzBuzz(value); //Perform fizzbuzz operation below
+		$('#userInput').val(""); //Clear user input field
+		$('#userInput').focus(); //Set focus back on input
 	})
 });
 
 //Function to perform fizz buzz operation which takes the max value as input
 function doFizzBuzz(max) {
 
-	//first validate to make sure that an actual number is entered
+	//First check to see if an actual value is passed
 	if(max == "" || max == null)
 	{
 		//Intentionally blank, as initially on pageload, there will be no value
 	}
 
+	//next, validate to make sure that an actual number is entered
 	else if(isNaN(max))
 	{
-		$('#fizzbuzz').empty();
-		appendFizzBuzz("<p>Please enter a valid number</p>");
-		//alert("not a number!");
+		$('#fizzbuzz').empty(); //Empty the fizzbuzz div object
+		appendFizzBuzz("<p>Please enter a valid number</p>"); //Add P element telling user to enter a valid number
 	}
 
-	//Otherwise, perform fizzbuzz
+	//Finally, perform fizzbuzz operation
 	else
 	{
 		$('#fizzbuzz').empty();
@@ -46,7 +47,7 @@ function doFizzBuzz(max) {
 			//If the number is only divisible by 3
 			else if( (number % 3) == 0)
 			{
-				appendFizzBuzz("<p>Fuzz</p>"); //Append output is 'fizz'
+				appendFizzBuzz("<p>Fizz</p>"); //Append output is 'fizz'
 			}
 			//If the number is only divisible by 5
 			else if( (number % 5 ) == 0)
@@ -65,6 +66,6 @@ function doFizzBuzz(max) {
 //Function to append supplied HTML to the fizzbuzz div
 function appendFizzBuzz(html) {
 
-	var div = document.getElementById("fizzbuzz");
-	div.innerHTML += html;
+	var div = document.getElementById("fizzbuzz"); //Grab fizzbuzz div into variable
+	div.innerHTML += html; //append html inside div element
 }
